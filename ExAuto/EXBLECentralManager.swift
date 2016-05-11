@@ -28,21 +28,21 @@ public class EXBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripher
     var data:NSMutableData!
     var peripheral : CBPeripheral!
     var errorString:connectState!
-    weak var delegate: BLECentralDelegate!
+    weak var delegate: BLECentralDelegate?
     
-    init(delegate:BLECentralDelegate) {
+    init(delegate:BLECentralDelegate?) {
         super.init()
-        self.manager = CBCentralManager(delegate: self, queue: nil)
+        manager = CBCentralManager(delegate: self, queue: nil)
     }
     
     //MARK:扫描
     func startScan() {
-        if self.manager.state == CBCentralManagerState.PoweredOn {
-            self.manager.scanForPeripheralsWithServices([self.serviceUUIDs], options: nil)
+        if manager.state == CBCentralManagerState.PoweredOn {
+            manager.scanForPeripheralsWithServices([serviceUUIDs], options: nil)
         }
     }
     func stopScan() {
-        self.manager.stopScan()
+        manager.stopScan()
     }
     
     // MARK: CBCentralManagerDelegate
@@ -50,37 +50,38 @@ public class EXBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripher
         
         switch central.state{
         case CBCentralManagerState.PoweredOn:
-            self.characteristicsUUIDs = CBUUID(string:characteristicUUIDString)
-            self.serviceUUIDs = CBUUID(string: seviceUUID)
-            self.manager.scanForPeripheralsWithServices([self.serviceUUIDs], options: nil)
-            self.errorString = connectState.poweredOn
+            characteristicsUUIDs = CBUUID(string:characteristicUUIDString)
+            serviceUUIDs = CBUUID(string: seviceUUID)
+            manager.scanForPeripheralsWithServices([serviceUUIDs], options: nil)
+            errorString = connectState.poweredOn
             print("Bluetooth is currently powered on and available to use.")
         case CBCentralManagerState.PoweredOff:
-            self.errorString = connectState.poweredOff
+            errorString = connectState.poweredOff
             print("Bluetooth is currently powered off.")
         case CBCentralManagerState.Unauthorized:
-            self.errorString = connectState.unauthorized
+            errorString = connectState.unauthorized
             print("The app is not authorized to use Bluetooth low energy.")
         default:
+            errorString = connectState.unknown
             print("centralManagerDidUpdateState: \(central.state)")
         }
-        self.delegate?.getConnetStateString(errorString)
+        delegate?.getConnetStateString(errorString)
     }
     
     public func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         print("didDiscoverPeripheral");
-        self.errorString = connectState.connecting
-        self.delegate?.getConnetStateString(errorString)
+        errorString = connectState.connecting
+        delegate?.getConnetStateString(errorString)
         self.peripheral = peripheral
         self.peripheral.delegate = self;
-        self.manager.connectPeripheral(peripheral, options: nil)
-        self.manager.stopScan()
+        manager.connectPeripheral(peripheral, options: nil)
+        manager.stopScan()
     }
     
     public func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
-        self.errorString = connectState.connected
-        self.delegate?.getConnetStateString(errorString)
-        self.peripheral.discoverServices([self.serviceUUIDs])
+        errorString = connectState.connected
+        delegate?.getConnetStateString(errorString)
+        peripheral.discoverServices([serviceUUIDs])
     }
     
     // MARK: CBPeripheralDelegate
@@ -90,8 +91,8 @@ public class EXBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripher
         }
         let services : NSArray = peripheral.services!
         for service in services as! [CBService] {
-            if service.UUID.isEqual(self.serviceUUIDs) {
-                self.peripheral.discoverCharacteristics(nil, forService: service)
+            if service.UUID.isEqual(serviceUUIDs) {
+                peripheral.discoverCharacteristics(nil, forService: service)
             }
         }
     }
@@ -102,8 +103,8 @@ public class EXBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripher
         }
         let characteristics : NSArray = service.characteristics!
         for c in characteristics as! [CBCharacteristic] {
-            if c.UUID.isEqual(self.characteristicsUUIDs) {
-                self.peripheral.setNotifyValue(true, forCharacteristic: c);
+            if c.UUID.isEqual(characteristicsUUIDs) {
+                peripheral.setNotifyValue(true, forCharacteristic: c);
             }
         }
     }
@@ -114,7 +115,7 @@ public class EXBLECentralManager: NSObject, CBCentralManagerDelegate, CBPeripher
         }
         let data = NSString(data: characteristic.value!, encoding: NSUTF8StringEncoding)
         print("data is \(data)");
-        self.delegate?.didUpdataValue(self, value: data!)
+        delegate?.didUpdataValue(self, value: data!)
     }
     
     //MARK:连接  后期实现，找到多个设备以后选择连接
@@ -157,36 +158,36 @@ public class EXBLEPeripheralManager: NSObject,CBPeripheralManagerDelegate {
     //super override
     override init() {
         super.init()
-        self.manager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
+        manager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
     }
     init(delegate: CBPeripheralManagerDelegate?,queue:dispatch_queue_t?,options:[String : AnyObject]?) {
         super.init()
-        self.manager = CBPeripheralManager(delegate: delegate, queue: queue, options: options)
+        manager = CBPeripheralManager(delegate: delegate, queue: queue, options: options)
     }
     
     func sendToSubcribers(data:NSData){
-        if self.manager.state == CBPeripheralManagerState.PoweredOn{
-            let isSuccess = self.manager.updateValue(data, forCharacteristic: self.characteristic, onSubscribedCentrals: nil)
+        if manager.state == CBPeripheralManagerState.PoweredOn{
+            let isSuccess = manager.updateValue(data, forCharacteristic: characteristic, onSubscribedCentrals: nil)
             if !isSuccess {
-                self.pendingData = data;
+                pendingData = data;
             }
         }
     }
     
     //  MARK:广播
     func startAdvertisingING(){
-        if self.manager.isAdvertising {
-            self.manager.stopAdvertising()
+        if manager.isAdvertising {
+            manager.stopAdvertising()
         }
-        self.manager.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [self.service.UUID]])
+        manager.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [service.UUID]])
     }
     
     func stopAdvertising() {
-        self.manager.stopAdvertising()
+        manager.stopAdvertising()
     }
     
     func isAdvertising() -> Bool {
-        return self.manager.isAdvertising
+        return manager.isAdvertising
     }
     
     
@@ -195,21 +196,21 @@ public class EXBLEPeripheralManager: NSObject,CBPeripheralManagerDelegate {
         if peripheral.state != CBPeripheralManagerState.PoweredOn {
             return
         }
-        self.characteristicUUID = CBUUID(string:characteristicUUIDString)
-        self.serviceUUID = CBUUID(string: seviceUUID)
+        characteristicUUID = CBUUID(string:characteristicUUIDString)
+        serviceUUID = CBUUID(string: seviceUUID)
         
-        self.characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: CBCharacteristicProperties.Notify, value: nil, permissions: CBAttributePermissions.Readable)
-        self.service = CBMutableService(type: self.serviceUUID, primary:true)
-        self.service.characteristics = [self.characteristic!]
+        characteristic = CBMutableCharacteristic(type: characteristicUUID, properties: CBCharacteristicProperties.Notify, value: nil, permissions: CBAttributePermissions.Readable)
+        service = CBMutableService(type: serviceUUID, primary:true)
+        service.characteristics = [characteristic!]
         
-        self.manager.addService(self.service)
+        manager.addService(service)
     }
     
     public func peripheralManager(peripheral: CBPeripheralManager, didAddService service: CBService, error: NSError?) {
         if (error != nil) {
             errorString = error?.localizedDescription
         }
-        self.startAdvertisingING()
+        startAdvertisingING()
     }
     
     public func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager, error: NSError?) {
@@ -219,18 +220,18 @@ public class EXBLEPeripheralManager: NSObject,CBPeripheralManagerDelegate {
         }
     }
     public func peripheralManager(peripheral: CBPeripheralManager, central: CBCentral, didSubscribeToCharacteristic characteristic: CBCharacteristic) {
-        self.delegate?.peripheralServer(self, centralDidSubscribe: central)
+        delegate?.peripheralServer(self, centralDidSubscribe: central)
     }
     
     public func peripheralManager(peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFromCharacteristic characteristic: CBCharacteristic) {
-        self.delegate?.peripheralServer(self, centralDidUnsubscribe: central)
+        delegate?.peripheralServer(self, centralDidUnsubscribe: central)
     }
     
     public func peripheralManagerIsReadyToUpdateSubscribers(peripheral: CBPeripheralManager) {
-        if (self.pendingData != nil) {
-            let data = self.pendingData.copy();
-            self.pendingData = nil
-            self.sendToSubcribers(data as! NSData)
+        if (pendingData != nil) {
+            let data = pendingData.copy();
+            pendingData = nil
+            sendToSubcribers(data as! NSData)
         }
     }
     
@@ -259,11 +260,12 @@ public enum RemoteEnum:NSInteger {
 
 public enum connectState:NSString{
     case scan
-    case connecting;
-    case connected;
+    case connecting
+    case connected
     case poweredOn
     case poweredOff
     case unauthorized
+    case unknown
 }
 
 
