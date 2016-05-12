@@ -303,9 +303,9 @@ class ExFocusManager {
             if view != nil && view != currentItem {//确实选了另一个视图
                 
                 //把focus放在最上层
-                if focusView.superview != UIApplication.sharedApplication().windows.last {//focus未出现
+                if focusView.superview != ExControlCenter.sharedInstance()?.displayControlDelegate?.externalWindow {//focus未出现
                     
-                    UIApplication.sharedApplication().windows.last?.addSubview(focusView)
+                    ExControlCenter.sharedInstance()?.displayControlDelegate?.externalWindow?.addSubview(focusView)
                 }
                 
                 moveFocus(view!, withAnimated: animated)
@@ -343,7 +343,7 @@ class ExFocusManager {
                             
                             if complete {
                                 
-                                UIApplication.sharedApplication().windows.last?.bringSubviewToFront(self.focusView)
+                                ExControlCenter.sharedInstance()?.displayControlDelegate?.externalWindow?.bringSubviewToFront(self.focusView)
                                 
                                 view.lastFocusView = self.currentItem
                                 
@@ -357,7 +357,7 @@ class ExFocusManager {
                         
                     )
                 }else{
-                    UIApplication.sharedApplication().windows.last?.bringSubviewToFront(focusView)
+                    ExControlCenter.sharedInstance()?.displayControlDelegate?.externalWindow?.bringSubviewToFront(focusView)
                     focusView.frame = finalFrame
                     view.lastFocusView = currentItem
                     currentItem = view as? UIView
@@ -368,14 +368,14 @@ class ExFocusManager {
             }else if nil == currentItem{//当前没有选定的
                 
                 if animated {
-                    UIApplication.sharedApplication().windows.last?.bringSubviewToFront(self.focusView)
+                    ExControlCenter.sharedInstance()?.displayControlDelegate?.externalWindow?.bringSubviewToFront(self.focusView)
                     UIView.animateWithDuration(0.3, animations: {
                         
                         self.focusView.frame = self.convertRectToSecondWindow(view as! UIView)
                         
                         }, completion: { complete in
                             if complete {
-                                UIApplication.sharedApplication().windows.last?.bringSubviewToFront(self.focusView)
+                                ExControlCenter.sharedInstance()?.displayControlDelegate?.externalWindow?.bringSubviewToFront(self.focusView)
                                 view.lastFocusView = self.currentItem
                                 self.currentItem = view as? UIView
                                 
@@ -399,14 +399,14 @@ class ExFocusManager {
     }
     
     private func convertRectToSecondWindow(view:UIView) -> CGRect{
-        return UIApplication.sharedApplication().windows.last!.convertRect(view.frame, fromView: view.superView)
+        return ExControlCenter.sharedInstance()!.displayControlDelegate!.externalWindow!.convertRect(view.frame, fromView: view.superview)
         
         
     }
     
     private func convertPointToSecondWindow(point:CGPoint,withView view:UIView) -> CGPoint{
         
-        return UIApplication.sharedApplication().windows.last!.convertPoint(point, fromView: view.superView)
+        return ExControlCenter.sharedInstance()!.displayControlDelegate!.externalWindow!.convertPoint(point, fromView: view.superview)
         
     }
     

@@ -11,6 +11,8 @@ import UIKit
 /// 显示层代理需要遵循的协议
 @objc public protocol ExDisplayControlProtocol:class {
     
+    var externalWindow:UIWindow?{get set}
+    
     optional func confirm()//用户按了确认键
     optional func back()//用户按了back键
     optional func voiceChange(voiceAmountScale:Float)//音量改变
@@ -57,9 +59,10 @@ public enum ExVROrder {
     case telOrder
 }
 /// 控制中心类
-public class ExControlCenter:NSObject,ExFocusDelegate {
+public class ExControlCenter:NSObject,ExFocusDelegate,BLECentralDelegate {
     
     //MARK:- 私有变量
+    private var bleCenter:EXBLECentralManager = EXBLECentralManager(delegate: nil)
         /// CC单例
     private static var singleton:ExControlCenter?
         /// 焦点控制
@@ -107,7 +110,30 @@ public class ExControlCenter:NSObject,ExFocusDelegate {
     
     private override init() {
         super.init()
+        
+        bleCenter.delegate = self
         focusManager.focusDelegate = self
+    }
+    //MARK: Ble代理
+    public func didUpdataValue(Central: EXBLECentralManager, value: NSString) {
+        if value.isEqualToString("1001") {
+            performUp()
+        }else if value.isEqualToString("1003"){
+            performDown()
+        }else if(value.isEqualToString("1004")){
+            performLeft()
+        }else if(value.isEqualToString("1005")){
+            performRight()
+        }else if(value.isEqualToString("1002")){
+            confirm()
+        }else if(value.isEqualToString("1010")){
+            back()
+        }
+    
+    }
+    public func getConnetStateString(errorString: connectState) -> connectState {
+        print("viewController data is \(errorString)")
+        return errorString
     }
     //MARK: ExFocusDelegate
     public func focus(focus: UIView, didSelectView view: UIView) {
