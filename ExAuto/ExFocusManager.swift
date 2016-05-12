@@ -288,10 +288,28 @@ class ExFocusManager {
         focusView.backgroundColor = UIColor.clearColor()
         focusView.layer.cornerRadius = 8
         focusView.layer.borderWidth = 4
-        focusView.layer.borderColor = UIColor.orangeColor().CGColor
+        focusView.layer.borderColor = colorFromHexRGB("7FFF00").CGColor
         
     }
     
+    private func colorFromHexRGB(inColorString:String?) -> UIColor {
+        let result : UIColor
+        var colorCode : uint = 0
+        let redByte,greenByte,blueByte:u_char
+        
+        if (inColorString != nil) {
+            let scanner = NSScanner.init(string: inColorString!)
+            scanner.scanHexInt(&colorCode)
+            redByte = u_char(colorCode >> 16)
+            greenByte = u_char((colorCode & 0xff00) >> 8)
+            blueByte = u_char(colorCode & 0xff)
+            result = UIColor.init(red: CGFloat(redByte)/0xff, green: CGFloat(greenByte)/0xff, blue: CGFloat(blueByte)/0xff, alpha: 1)
+            
+            return result
+        }else{
+            return UIColor.whiteColor()
+        }
+    }
     /**
      focus移动到指定view上
      
