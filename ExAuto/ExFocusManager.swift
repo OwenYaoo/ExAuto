@@ -18,14 +18,8 @@ public protocol ExFocusDelegate:class {
 public protocol ExViewDelegate:class {
     /// 上次视图
     var lastFocusView:UIView? {get set}
-        /// 左侧视图
-    var left:UIView? {get set}
-        /// 上侧视图
-    var upView:UIView?{get set}
-        /// 右侧视图
-    var right:UIView?{get set}
-        /// 下侧视图
-    var downView:UIView?{get set}
+        /// 它的上下左右视图，按照上左下右顺序赋值，元素可为nil，说明没有该方向的视图
+    var surroundings : [UIView?]{get set}
 }
 
 public extension UIView {
@@ -43,40 +37,28 @@ public extension UIView {
 public class ExView : UIView, ExViewDelegate {
         /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExActionSheet:UIActionSheet,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExAlertView:UIAlertView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExControl:UIControl, ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -84,20 +66,14 @@ public class ExCollectionViewCell:UICollectionViewCell,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExCollectionReusableView:UICollectionReusableView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -105,20 +81,14 @@ public class ExButton:UIButton, ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExSegementedControl:UISegmentedControl,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
     
 }
@@ -126,10 +96,7 @@ public class ExSlider:UISlider,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -137,30 +104,21 @@ public class ExStepper:UIStepper,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExDatePicker:UIDatePicker,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExPageControl:UIPageControl,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -168,10 +126,7 @@ public class ExRefreshControl:UIRefreshControl,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -179,10 +134,7 @@ public class ExSwitch:UISwitch,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -190,10 +142,7 @@ public class ExTextField:UITextField,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -201,10 +150,7 @@ public class ExImageView:UIImageView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -212,10 +158,7 @@ public class ExInputView:UIInputView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -223,10 +166,7 @@ public class ExPickerView:UIPickerView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -234,10 +174,7 @@ public class ExPopoverBackgroundView:UIPopoverBackgroundView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -245,10 +182,7 @@ public class ExProgressView:UIProgressView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -256,20 +190,14 @@ public class ExScollView:UIScrollView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExCollectionView:UICollectionView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -277,10 +205,7 @@ public class ExTableView:UITableView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -288,30 +213,21 @@ public class ExTextView:UITextView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExSearchBar:UISearchBar,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExStackView:UIStackView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -319,10 +235,7 @@ public class ExTabBar:UITabBar,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -330,10 +243,7 @@ public class ExTableViewCell:UITableViewCell,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -341,10 +251,7 @@ public class ExTableViewHeaderFooterView:UITableViewHeaderFooterView,ExViewDeleg
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -352,10 +259,7 @@ public class ExToolbar:UIToolbar,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -363,10 +267,7 @@ public class ExVisualEffectView:UIVisualEffectView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -374,10 +275,7 @@ public class ExWebView:UIWebView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -385,10 +283,7 @@ public class ExWindow:UIWindow,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
-    public var left:UIView?
-    public var upView:UIView?
-    public var right:UIView?
-    public var downView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 //MARK: 焦点管理器类
