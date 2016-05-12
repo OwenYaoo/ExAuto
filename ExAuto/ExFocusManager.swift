@@ -502,7 +502,9 @@ class ExFocusManager {
 //            
 //        }
         if let current = currentItem as? ExViewDelegate {
-            setFocusForView(current.surroundings[0], withAnimated: animated)
+            if nil != current.surroundings[0] {
+                setFocusForView(current.surroundings[0], withAnimated: animated)
+            }
         }
         
 
@@ -545,7 +547,9 @@ class ExFocusManager {
 //            
 //        }
         if let current = currentItem as? ExViewDelegate {
-            setFocusForView(current.surroundings[1], withAnimated: animated)
+            if nil != current.surroundings[1] {
+                setFocusForView(current.surroundings[1], withAnimated: animated)
+            }
         }
     }
     /**
@@ -586,7 +590,9 @@ class ExFocusManager {
 //            
 //        }
         if let current = currentItem as? ExViewDelegate {
-            setFocusForView(current.surroundings[3], withAnimated: animated)
+            if nil != current.surroundings[3] {
+                setFocusForView(current.surroundings[3], withAnimated: animated)
+            }
         }
     }
     /**
@@ -629,7 +635,9 @@ class ExFocusManager {
 //            }
 //        }
         if let current = currentItem as? ExViewDelegate {
-            setFocusForView(current.surroundings[2], withAnimated: animated)
+            if nil != current.surroundings[2] {
+                setFocusForView(current.surroundings[2], withAnimated: animated)
+            }
         }
     }
     
