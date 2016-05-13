@@ -22,16 +22,6 @@ public protocol ExViewDelegate:class {
     var surroundings : [UIView?]{get set}
 }
 
-public extension UIView {
-        /// 可落焦点的次级视图
-    var availableSubviews : [UIView]{
-        return ExFocusManager.sharedInstance().getAvailableSubviews(self)
-    }
-        /// 可落焦点的上级视图
-    var superView:UIView?{
-        return ExFocusManager.sharedInstance().getSuperFocusForView(self)
-    }
-}
 
 //MARK:以下为自定义的继承自系统的各种UIKit的类，只不过遵循了下ExViewDelegate协议
 public class ExView : UIView, ExViewDelegate {
@@ -515,37 +505,6 @@ class ExFocusManager {
      */
     func lookup_Left(animated animated:Bool) {
         
-//        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {
-//            var minVDistance = CGFloat.max
-//            var minHDistance = CGFloat.max
-//            var nextItem:UIView? = currentItem
-//            for item in items {
-//                if convertPointToSecondWindow(item.center, withView: item).x < convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x {
-//                    let currentHSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-//                    if minHDistance >= currentHSpacing {
-//                        
-//                        if minHDistance > fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x) {
-//                            minHDistance = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-//                            
-//                            minVDistance = CGFloat.max
-//                            nextItem = item
-//                        }else{
-//                            let currentVSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-//                            if minVDistance > currentVSpacing {
-//                                minVDistance = currentVSpacing
-//                                nextItem = item
-//                            }
-//                            
-//                        }
-//                    }
-//                    
-//                }
-//            }
-//            if currentItem != nextItem {
-//                setFocusForView(nextItem, withAnimated: animated)
-//            }
-//            
-//        }
         if let current = currentItem as? ExViewDelegate {
             if nil != current.surroundings[1] {
                 setFocusForView(current.surroundings[1], withAnimated: animated)
@@ -558,37 +517,7 @@ class ExFocusManager {
      */
     func lookup_Right(animated animated:Bool) {
         
-//        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {
-//            var minVDistance = CGFloat.max
-//            var minHDistance = CGFloat.max
-//            var nextItem:UIView? = currentItem
-//            for item in items {
-//                if convertPointToSecondWindow(item.center, withView: item).x > convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x {
-//                    let currentHSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-//                    if minHDistance >= currentHSpacing {
-//                        
-//                        if minHDistance > currentHSpacing {
-//                            minHDistance = currentHSpacing
-//                            
-//                            minVDistance = CGFloat.max
-//                            nextItem = item
-//                        }else{
-//                            let currentVSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-//                            if minVDistance > currentVSpacing {
-//                                minVDistance = currentVSpacing
-//                                nextItem = item
-//                            }
-//                            
-//                        }
-//                    }
-//                    
-//                }
-//            }
-//            if currentItem != nextItem {
-//                setFocusForView(nextItem, withAnimated: animated)
-//            }
-//            
-//        }
+
         if let current = currentItem as? ExViewDelegate {
             if nil != current.surroundings[3] {
                 setFocusForView(current.surroundings[3], withAnimated: animated)
@@ -601,93 +530,11 @@ class ExFocusManager {
      */
     func lookup_Down(animated animated:Bool) {
         
-//        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {
-//            var minVDistance = CGFloat.max
-//            var minHDistance = CGFloat.max
-//            var nextItem:UIView? = currentItem
-//            for item in items {
-//                if convertPointToSecondWindow(item.center, withView: item).y > convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y {
-//                    let currentVSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-//                    if minVDistance >= currentVSpacing {
-//                        
-//                        if minVDistance > currentVSpacing {
-//                            minVDistance = currentVSpacing
-//                            
-//                            minHDistance = CGFloat.max
-//                            nextItem = item
-//                        }else{
-//                            let currentHSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-//                            
-//                            
-//                            if minHDistance > currentHSpacing {
-//                                minHDistance = currentHSpacing
-//                                nextItem = item
-//                            }
-//                            
-//                        }
-//                    }
-//                    
-//                }
-//            }
-//            
-//            if currentItem != nextItem {
-//                setFocusForView(nextItem, withAnimated: animated)
-//            }
-//        }
         if let current = currentItem as? ExViewDelegate {
             if nil != current.surroundings[2] {
                 setFocusForView(current.surroundings[2], withAnimated: animated)
             }
         }
     }
-    
-    func getSuperFocusForView(view:UIView?) -> UIView?{
-        
-        var superView = view?.superview
-        
-        while superView != nil {
-            
-            if superView! is ExViewDelegate {
-                
-                return superView
-            }else{
-                
-                superView = superView?.superview
-            }
-        }
-        
-        return nil
-    }
-    
-    func getAvailableSubviews(view:UIView?) -> [UIView]{
-        
-        var subViews = [UIView]()
-
-        if view?.subviews.count > 0 {
-            var find = false
-            var i = 0
-            while i < view!.subviews.count {
-                let subView = view!.subviews[i]
-                if subView is ExViewDelegate {
-                    find = true
-                    subViews.append(subView)
-                }
-                i += 1
-            }
-            if !find {
-                i = 0
-                while i < view!.subviews.count {
-                    subViews = getAvailableSubviews(view!.subviews.first)
-                    i += 1
-                }
-            }
-        }
-            
-        
-        
-        return subViews
-        
-    }
-    
 
 }
