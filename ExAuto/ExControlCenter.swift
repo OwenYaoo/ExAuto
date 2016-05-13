@@ -148,7 +148,9 @@ public class ExControlCenter:NSObject,ExFocusDelegate,BLECentralDelegate {
      */
     public func performUp(){
         
-        focusManager.lookup_Up(animated: true)
+        if displayControlDelegate != nil {
+            focusManager.lookup_Up(animated: true)
+        }
 
         
     }
@@ -157,14 +159,18 @@ public class ExControlCenter:NSObject,ExFocusDelegate,BLECentralDelegate {
      */
     public func performLeft(){
         
-        focusManager.lookup_Left(animated: true)
+        if displayControlDelegate != nil {
+            focusManager.lookup_Left(animated: true)
+        }
     }
     /**
      遥控器向右
      */
     public func performRight(){
         
-        focusManager.lookup_Right(animated: true)
+        if displayControlDelegate != nil {
+            focusManager.lookup_Right(animated: true)
+        }
         
     }
     /**
@@ -172,8 +178,9 @@ public class ExControlCenter:NSObject,ExFocusDelegate,BLECentralDelegate {
      */
     public func performDown(){
         
-        
-        focusManager.lookup_Down(animated: true)
+        if displayControlDelegate != nil {
+            focusManager.lookup_Down(animated: true)
+        }
         
     }
     /**
@@ -199,7 +206,7 @@ public class ExControlCenter:NSObject,ExFocusDelegate,BLECentralDelegate {
      */
     public func setFocusForView(view:UIView?){
         
-        if view != nil{
+        if view != nil && nil != displayControlDelegate{
 
             focusManager.setFocusForView(view!, withAnimated: true)
         }
