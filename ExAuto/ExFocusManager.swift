@@ -277,6 +277,7 @@ public class ExWindow:UIWindow,ExViewDelegate {
     
 }
 //MARK: 焦点管理器类
+/// 控件不可用autolayout布局，只能用frame，因为焦点是根据frame在编译阶段就确定了的
 class ExFocusManager {
 
     private static var singleton:ExFocusManager?
@@ -303,7 +304,7 @@ class ExFocusManager {
         return singleton!
     }
     
-    init() {
+    private init() {
         setupFocusView()
     }
     //MARK:- Instance Methods
