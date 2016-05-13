@@ -365,7 +365,11 @@ class ExFocusManager {
      */
     private func moveFocus(view:UIView,withAnimated animated:Bool){
         
-        let finalFrame = convertRectToSecondWindow(view)
+        var finalFrame = convertRectToSecondWindow(view)
+        finalFrame.origin.x -= 2
+        finalFrame.origin.y -= 2
+        finalFrame.size.height += 4
+        finalFrame.size.width += 4
         
         if let view = view as? ExViewDelegate {
             
@@ -390,7 +394,6 @@ class ExFocusManager {
                                 view.lastFocusView = self.currentItem
                                 
                                 self.currentItem = view as? UIView
-                                
                                 
                                 self.focusDelegate?.focus(self.focusView, didSelectView: (view as! UIView))
                                 
