@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		928C03431CE4173300265B7C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03421CE4173300265B7C /* QuartzCore.framework */; };
+		928C03461CE4177100265B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03451CE4177100265B7C /* CoreGraphics.framework */; };
+		928C03481CE4177E00265B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03471CE4177E00265B7C /* Foundation.framework */; };
+		928C034A1CE4179500265B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03491CE4179500265B7C /* UIKit.framework */; };
+		928C034C1CE4179D00265B7C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C034B1CE4179D00265B7C /* SystemConfiguration.framework */; };
+		928C034E1CE417B000265B7C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C034D1CE417B000265B7C /* AudioToolbox.framework */; };
+		928C03501CE417C000265B7C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C034F1CE417C000265B7C /* AddressBook.framework */; };
+		928C03521CE417CB00265B7C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03511CE417CB00265B7C /* AVFoundation.framework */; };
+		928C03541CE417DB00265B7C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03531CE417DB00265B7C /* CoreTelephony.framework */; };
+		928C03561CE417E500265B7C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03551CE417E500265B7C /* CoreLocation.framework */; };
+		928C03581CE417F200265B7C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03571CE417F200265B7C /* libz.tbd */; };
+		928C035D1CE418D400265B7C /* Iflytek-Definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 928C035C1CE418D400265B7C /* Iflytek-Definition.h */; };
+		928C03641CE41A1600265B7C /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 928C03631CE41A1600265B7C /* iflyMSC.framework */; };
+		928C03681CE4279C00265B7C /* VoiceRecogizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928C03671CE4279C00265B7C /* VoiceRecogizerManager.swift */; };
 		92AD8E881CBB40C900C6EF14 /* ExAuto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AD8E7D1CBB40C900C6EF14 /* ExAuto.framework */; };
 		92AD8E8D1CBB40C900C6EF14 /* ExAutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8E8C1CBB40C900C6EF14 /* ExAutoTests.swift */; };
 		F4388D3D1CC7333B002D8760 /* ExFocusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4388D3C1CC7333B002D8760 /* ExFocusManager.swift */; };
@@ -25,6 +39,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		928C03421CE4173300265B7C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		928C03451CE4177100265B7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		928C03471CE4177E00265B7C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		928C03491CE4179500265B7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		928C034B1CE4179D00265B7C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		928C034D1CE417B000265B7C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		928C034F1CE417C000265B7C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		928C03511CE417CB00265B7C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		928C03531CE417DB00265B7C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		928C03551CE417E500265B7C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		928C03571CE417F200265B7C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		928C035C1CE418D400265B7C /* Iflytek-Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Iflytek-Definition.h"; sourceTree = "<group>"; };
+		928C03621CE4196E00265B7C /* ExAuto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ExAuto-Bridging-Header.h"; path = "VoiceRecognizer/ExAuto-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		928C03631CE41A1600265B7C /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = VoiceRecognizer/iflyMSC.framework; sourceTree = "<group>"; };
+		928C03671CE4279C00265B7C /* VoiceRecogizerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecogizerManager.swift; sourceTree = "<group>"; };
 		92AD8E7D1CBB40C900C6EF14 /* ExAuto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExAuto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92AD8E821CBB40C900C6EF14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92AD8E871CBB40C900C6EF14 /* ExAutoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExAutoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +69,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928C03641CE41A1600265B7C /* iflyMSC.framework in Frameworks */,
+				928C03581CE417F200265B7C /* libz.tbd in Frameworks */,
+				928C03561CE417E500265B7C /* CoreLocation.framework in Frameworks */,
+				928C03541CE417DB00265B7C /* CoreTelephony.framework in Frameworks */,
+				928C03521CE417CB00265B7C /* AVFoundation.framework in Frameworks */,
+				928C03501CE417C000265B7C /* AddressBook.framework in Frameworks */,
+				928C034E1CE417B000265B7C /* AudioToolbox.framework in Frameworks */,
+				928C034C1CE4179D00265B7C /* SystemConfiguration.framework in Frameworks */,
+				928C034A1CE4179500265B7C /* UIKit.framework in Frameworks */,
+				928C03481CE4177E00265B7C /* Foundation.framework in Frameworks */,
+				928C03461CE4177100265B7C /* CoreGraphics.framework in Frameworks */,
+				928C03431CE4173300265B7C /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,12 +95,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		928C03441CE4174600265B7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				928C03631CE41A1600265B7C /* iflyMSC.framework */,
+				928C03571CE417F200265B7C /* libz.tbd */,
+				928C03551CE417E500265B7C /* CoreLocation.framework */,
+				928C03531CE417DB00265B7C /* CoreTelephony.framework */,
+				928C03511CE417CB00265B7C /* AVFoundation.framework */,
+				928C034F1CE417C000265B7C /* AddressBook.framework */,
+				928C034D1CE417B000265B7C /* AudioToolbox.framework */,
+				928C034B1CE4179D00265B7C /* SystemConfiguration.framework */,
+				928C03491CE4179500265B7C /* UIKit.framework */,
+				928C03471CE4177E00265B7C /* Foundation.framework */,
+				928C03451CE4177100265B7C /* CoreGraphics.framework */,
+				928C03421CE4173300265B7C /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		928C035B1CE418D400265B7C /* VoiceRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				928C035C1CE418D400265B7C /* Iflytek-Definition.h */,
+				928C03621CE4196E00265B7C /* ExAuto-Bridging-Header.h */,
+				928C03671CE4279C00265B7C /* VoiceRecogizerManager.swift */,
+			);
+			name = VoiceRecognizer;
+			path = ../VoiceRecognizer;
+			sourceTree = "<group>";
+		};
 		92AD8E731CBB40C900C6EF14 = {
 			isa = PBXGroup;
 			children = (
 				92AD8E7F1CBB40C900C6EF14 /* ExAuto */,
 				92AD8E8B1CBB40C900C6EF14 /* ExAutoTests */,
 				92AD8E7E1CBB40C900C6EF14 /* Products */,
+				928C03441CE4174600265B7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +151,7 @@
 				F4388D3C1CC7333B002D8760 /* ExFocusManager.swift */,
 				92AD8E821CBB40C900C6EF14 /* Info.plist */,
 				F4BF290F1CC77679005A1C4E /* ExControlCenter.swift */,
+				928C035B1CE418D400265B7C /* VoiceRecognizer */,
 			);
 			path = ExAuto;
 			sourceTree = "<group>";
@@ -99,6 +172,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928C035D1CE418D400265B7C /* Iflytek-Definition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4BF29101CC77679005A1C4E /* ExControlCenter.swift in Sources */,
+				928C03681CE4279C00265B7C /* VoiceRecogizerManager.swift in Sources */,
 				F44544921CE301EC00F59869 /* EXBLECentralManager.swift in Sources */,
 				F4388D3D1CC7333B002D8760 /* ExFocusManager.swift in Sources */,
 			);
@@ -328,6 +403,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VoiceRecognizer",
+				);
 				INFOPLIST_FILE = ExAuto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -335,6 +414,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VoiceRecognizer/ExAuto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -349,6 +429,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VoiceRecognizer",
+				);
 				INFOPLIST_FILE = ExAuto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -356,6 +440,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VoiceRecognizer/ExAuto-Bridging-Header.h";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
