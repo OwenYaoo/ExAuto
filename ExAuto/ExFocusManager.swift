@@ -18,42 +18,37 @@ public protocol ExFocusDelegate:class {
 public protocol ExViewDelegate:class {
     /// 上次视图
     var lastFocusView:UIView? {get set}
-    
+        /// 它的上下左右视图，按照上左下右顺序赋值，元素可为nil，说明没有该方向的视图
+    var surroundings : [UIView?]{get set}
 }
 
-public extension UIView {
-        /// 可落焦点的次级视图
-    var availableSubviews : [UIView]{
-        return ExFocusManager.sharedInstance().getAvailableSubviews(self)
-    }
-        /// 可落焦点的上级视图
-    var superView:UIView?{
-        return ExFocusManager.sharedInstance().getSuperFocusForView(self)
-    }
-}
 
 //MARK:以下为自定义的继承自系统的各种UIKit的类，只不过遵循了下ExViewDelegate协议
 public class ExView : UIView, ExViewDelegate {
         /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExActionSheet:UIActionSheet,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExAlertView:UIAlertView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExControl:UIControl, ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -61,12 +56,14 @@ public class ExCollectionViewCell:UICollectionViewCell,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExCollectionReusableView:UICollectionReusableView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -74,12 +71,14 @@ public class ExButton:UIButton, ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExSegementedControl:UISegmentedControl,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
     
 }
@@ -87,6 +86,7 @@ public class ExSlider:UISlider,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -94,18 +94,21 @@ public class ExStepper:UIStepper,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExDatePicker:UIDatePicker,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExPageControl:UIPageControl,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -113,6 +116,7 @@ public class ExRefreshControl:UIRefreshControl,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -120,6 +124,7 @@ public class ExSwitch:UISwitch,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -127,6 +132,7 @@ public class ExTextField:UITextField,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -134,6 +140,7 @@ public class ExImageView:UIImageView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -141,6 +148,7 @@ public class ExInputView:UIInputView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -148,6 +156,7 @@ public class ExPickerView:UIPickerView,ExViewDelegate{
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -155,6 +164,7 @@ public class ExPopoverBackgroundView:UIPopoverBackgroundView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -162,6 +172,7 @@ public class ExProgressView:UIProgressView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -169,12 +180,14 @@ public class ExScollView:UIScrollView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExCollectionView:UICollectionView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -182,6 +195,7 @@ public class ExTableView:UITableView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -189,18 +203,21 @@ public class ExTextView:UITextView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExSearchBar:UISearchBar,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 public class ExStackView:UIStackView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -208,6 +225,7 @@ public class ExTabBar:UITabBar,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -215,6 +233,7 @@ public class ExTableViewCell:UITableViewCell,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -222,6 +241,7 @@ public class ExTableViewHeaderFooterView:UITableViewHeaderFooterView,ExViewDeleg
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -229,6 +249,7 @@ public class ExToolbar:UIToolbar,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -236,6 +257,7 @@ public class ExVisualEffectView:UIVisualEffectView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -243,6 +265,7 @@ public class ExWebView:UIWebView,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 
@@ -250,9 +273,11 @@ public class ExWindow:UIWindow,ExViewDelegate {
 
     /// 上次视图
     public var lastFocusView:UIView?
+    public var surroundings : [UIView?] = []
     
 }
 //MARK: 焦点管理器类
+/// 控件不可用autolayout布局，只能用frame，因为焦点是根据frame在编译阶段就确定了的
 class ExFocusManager {
 
     private static var singleton:ExFocusManager?
@@ -279,7 +304,7 @@ class ExFocusManager {
         return singleton!
     }
     
-    init() {
+    private init() {
         setupFocusView()
     }
     //MARK:- Instance Methods
@@ -288,10 +313,28 @@ class ExFocusManager {
         focusView.backgroundColor = UIColor.clearColor()
         focusView.layer.cornerRadius = 8
         focusView.layer.borderWidth = 4
-        focusView.layer.borderColor = UIColor.orangeColor().CGColor
+        focusView.layer.borderColor = colorFromHexRGB("7FFF00").CGColor
         
     }
     
+    private func colorFromHexRGB(inColorString:String?) -> UIColor {
+        let result : UIColor
+        var colorCode : uint = 0
+        let redByte,greenByte,blueByte:u_char
+        
+        if (inColorString != nil) {
+            let scanner = NSScanner.init(string: inColorString!)
+            scanner.scanHexInt(&colorCode)
+            redByte = u_char(colorCode >> 16)
+            greenByte = u_char((colorCode & 0xff00) >> 8)
+            blueByte = u_char(colorCode & 0xff)
+            result = UIColor.init(red: CGFloat(redByte)/0xff, green: CGFloat(greenByte)/0xff, blue: CGFloat(blueByte)/0xff, alpha: 1)
+            
+            return result
+        }else{
+            return UIColor.whiteColor()
+        }
+    }
     /**
      focus移动到指定view上
      
@@ -323,7 +366,11 @@ class ExFocusManager {
      */
     private func moveFocus(view:UIView,withAnimated animated:Bool){
         
-        let finalFrame = convertRectToSecondWindow(view)
+        var finalFrame = convertRectToSecondWindow(view)
+        finalFrame.origin.x -= 2
+        finalFrame.origin.y -= 2
+        finalFrame.size.height += 4
+        finalFrame.size.width += 4
         
         if let view = view as? ExViewDelegate {
             
@@ -348,7 +395,6 @@ class ExFocusManager {
                                 view.lastFocusView = self.currentItem
                                 
                                 self.currentItem = view as? UIView
-                                
                                 
                                 self.focusDelegate?.focus(self.focusView, didSelectView: (view as! UIView))
                                 
@@ -415,39 +461,44 @@ class ExFocusManager {
      */
     func lookup_Up(animated animated:Bool) {
         
-        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {//当前有选中项
-            
-            //搜索策略：首先查找垂直最短间距；如果最短间距有多个，则选择水平最短间距那个控件作为查找对象
-            //以后的向右、向左、向下策略相同，相应方向会有变化
-            //所有的查找都以中心点作为查找依据
-            var minVDistance = CGFloat.max//垂直最短间距
-            var minHDistance = CGFloat.max//水平最短间距
-            var nextItem:UIView? = currentItem //查找对象
-            for item in items {//遍历所有控件
-                if convertPointToSecondWindow(item.center, withView: item).y < convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y {//只查找上面的控件
-                    let currentVSpace = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-                    if minVDistance >= currentVSpace {//垂直间距不大于最短间距，需要进一步判断
-                        
-                        if minVDistance > currentVSpace {//找到垂直更短间距
-                            minVDistance = currentVSpace
-                            minHDistance = CGFloat.max
-                            nextItem = item
-                        }else{//当前的垂直最短距离相同，则找到它们中的水平最短间距作为查找对象
-                            let currentHSpace = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-                            if minHDistance > currentHSpace {
-                                minHDistance = currentHSpace
-                                nextItem = item
-                            }
-                            
-                        }
-                    }
-                    
-                }
+//        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {//当前有选中项
+//            
+//            //搜索策略：首先查找垂直最短间距；如果最短间距有多个，则选择水平最短间距那个控件作为查找对象
+//            //以后的向右、向左、向下策略相同，相应方向会有变化
+//            //所有的查找都以中心点作为查找依据
+//            var minVDistance = CGFloat.max//垂直最短间距
+//            var minHDistance = CGFloat.max//水平最短间距
+//            var nextItem:UIView? = currentItem //查找对象
+//            for item in items {//遍历所有控件
+//                if convertPointToSecondWindow(item.center, withView: item).y < convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y {//只查找上面的控件
+//                    let currentVSpace = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
+//                    if minVDistance >= currentVSpace {//垂直间距不大于最短间距，需要进一步判断
+//                        
+//                        if minVDistance > currentVSpace {//找到垂直更短间距
+//                            minVDistance = currentVSpace
+//                            minHDistance = CGFloat.max
+//                            nextItem = item
+//                        }else{//当前的垂直最短距离相同，则找到它们中的水平最短间距作为查找对象
+//                            let currentHSpace = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
+//                            if minHDistance > currentHSpace {
+//                                minHDistance = currentHSpace
+//                                nextItem = item
+//                            }
+//                            
+//                        }
+//                    }
+//                    
+//                }
+//            }
+//            if currentItem != nextItem {
+//                setFocusForView(nextItem, withAnimated: animated)
+//            }
+//            
+//        }
+        if let current = currentItem as? ExViewDelegate {
+            if nil != current.surroundings[0] {
+                setFocusForView(current.surroundings[0], withAnimated: animated)
             }
-            if currentItem != nextItem {
-                setFocusForView(nextItem, withAnimated: animated)
-            }
-            
         }
         
 
@@ -458,36 +509,10 @@ class ExFocusManager {
      */
     func lookup_Left(animated animated:Bool) {
         
-        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {
-            var minVDistance = CGFloat.max
-            var minHDistance = CGFloat.max
-            var nextItem:UIView? = currentItem
-            for item in items {
-                if convertPointToSecondWindow(item.center, withView: item).x < convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x {
-                    let currentHSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-                    if minHDistance >= currentHSpacing {
-                        
-                        if minHDistance > fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x) {
-                            minHDistance = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-                            
-                            minVDistance = CGFloat.max
-                            nextItem = item
-                        }else{
-                            let currentVSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-                            if minVDistance > currentVSpacing {
-                                minVDistance = currentVSpacing
-                                nextItem = item
-                            }
-                            
-                        }
-                    }
-                    
-                }
+        if let current = currentItem as? ExViewDelegate {
+            if nil != current.surroundings[1] {
+                setFocusForView(current.surroundings[1], withAnimated: animated)
             }
-            if currentItem != nextItem {
-                setFocusForView(nextItem, withAnimated: animated)
-            }
-            
         }
     }
     /**
@@ -496,36 +521,11 @@ class ExFocusManager {
      */
     func lookup_Right(animated animated:Bool) {
         
-        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {
-            var minVDistance = CGFloat.max
-            var minHDistance = CGFloat.max
-            var nextItem:UIView? = currentItem
-            for item in items {
-                if convertPointToSecondWindow(item.center, withView: item).x > convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x {
-                    let currentHSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-                    if minHDistance >= currentHSpacing {
-                        
-                        if minHDistance > currentHSpacing {
-                            minHDistance = currentHSpacing
-                            
-                            minVDistance = CGFloat.max
-                            nextItem = item
-                        }else{
-                            let currentVSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-                            if minVDistance > currentVSpacing {
-                                minVDistance = currentVSpacing
-                                nextItem = item
-                            }
-                            
-                        }
-                    }
-                    
-                }
+
+        if let current = currentItem as? ExViewDelegate {
+            if nil != current.surroundings[3] {
+                setFocusForView(current.surroundings[3], withAnimated: animated)
             }
-            if currentItem != nextItem {
-                setFocusForView(nextItem, withAnimated: animated)
-            }
-            
         }
     }
     /**
@@ -534,88 +534,11 @@ class ExFocusManager {
      */
     func lookup_Down(animated animated:Bool) {
         
-        if let items = (currentItem?.superView ?? currentItem?.superview)?.availableSubviews {
-            var minVDistance = CGFloat.max
-            var minHDistance = CGFloat.max
-            var nextItem:UIView? = currentItem
-            for item in items {
-                if convertPointToSecondWindow(item.center, withView: item).y > convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y {
-                    let currentVSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).y - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).y)
-                    if minVDistance >= currentVSpacing {
-                        
-                        if minVDistance > currentVSpacing {
-                            minVDistance = currentVSpacing
-                            
-                            minHDistance = CGFloat.max
-                            nextItem = item
-                        }else{
-                            let currentHSpacing = fabs(convertPointToSecondWindow(item.center, withView: item).x - convertPointToSecondWindow(currentItem!.center, withView: currentItem!).x)
-                            
-                            
-                            if minHDistance > currentHSpacing {
-                                minHDistance = currentHSpacing
-                                nextItem = item
-                            }
-                            
-                        }
-                    }
-                    
-                }
-            }
-            
-            if currentItem != nextItem {
-                setFocusForView(nextItem, withAnimated: animated)
+        if let current = currentItem as? ExViewDelegate {
+            if nil != current.surroundings[2] {
+                setFocusForView(current.surroundings[2], withAnimated: animated)
             }
         }
     }
-    
-    func getSuperFocusForView(view:UIView?) -> UIView?{
-        
-        var superView = view?.superview
-        
-        while superView != nil {
-            
-            if superView! is ExViewDelegate {
-                
-                return superView
-            }else{
-                
-                superView = superView?.superview
-            }
-        }
-        
-        return nil
-    }
-    
-    func getAvailableSubviews(view:UIView?) -> [UIView]{
-        
-        var subViews = [UIView]()
-
-        if view?.subviews.count > 0 {
-            var find = false
-            var i = 0
-            while i < view!.subviews.count {
-                let subView = view!.subviews[i]
-                if subView is ExViewDelegate {
-                    find = true
-                    subViews.append(subView)
-                }
-                i += 1
-            }
-            if !find {
-                i = 0
-                while i < view!.subviews.count {
-                    subViews = getAvailableSubviews(view!.subviews.first)
-                    i += 1
-                }
-            }
-        }
-            
-        
-        
-        return subViews
-        
-    }
-    
 
 }
