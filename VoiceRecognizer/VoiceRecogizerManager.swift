@@ -11,6 +11,10 @@ import Foundation
 
 
 public class VoiceRecogizerManager:NSObject,IFlySpeechRecognizerDelegate {
+    public func onResults(_ results: [Any]!, isLast: Bool) {
+        
+    }
+    
 
     var iflySpeechRecognizer:IFlySpeechRecognizer = IFlySpeechRecognizer.sharedInstance() as! IFlySpeechRecognizer;
     public func voiceRecogizerInitWithAppId(appId : String){
@@ -22,11 +26,11 @@ public class VoiceRecogizerManager:NSObject,IFlySpeechRecognizerDelegate {
         IFlySpeechUtility.createUtility(initString);
         
         self.iflySpeechRecognizer.delegate = self;//请不要删除这句,createRecognizer是单例方法，需要重新设置代理
-        self.iflySpeechRecognizer.setParameter("asr", forKey: IFlySpeechConstant.IFLY_DOMAIN())
-        self.iflySpeechRecognizer.setParameter("16000", forKey: IFlySpeechConstant.SAMPLE_RATE())
-        self.iflySpeechRecognizer.setParameter("asr.pcm", forKey: IFlySpeechConstant.ASR_AUDIO_PATH())
+        self.iflySpeechRecognizer.setParameter("asr", forKey: IFlySpeechConstant.ifly_DOMAIN())
+        self.iflySpeechRecognizer.setParameter("16000", forKey: IFlySpeechConstant.sample_RATE())
+        self.iflySpeechRecognizer.setParameter("asr.pcm", forKey: IFlySpeechConstant.asr_AUDIO_PATH())
         // | result_type   | 返回结果的数据格式 plain,只支持plain
-        self.iflySpeechRecognizer.setParameter("plain", forKey: IFlySpeechConstant.RESULT_TYPE())
+        self.iflySpeechRecognizer.setParameter("plain", forKey: IFlySpeechConstant.result_TYPE())
     
     }
     
@@ -85,7 +89,7 @@ public class VoiceRecogizerManager:NSObject,IFlySpeechRecognizerDelegate {
      *
      * @param   errorCode   -[out] 错误类，具体用法见IFlySpeechError
      */
-    @objc public func onError(error:IFlySpeechError){
+    @objc public func onError(_ error:IFlySpeechError){
         NSLog("onError:\(error.errorDesc)")
     }
     
